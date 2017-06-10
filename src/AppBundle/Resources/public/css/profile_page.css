@@ -1,0 +1,118 @@
+html,body{
+    margin:0;
+    padding:0;
+    height:100%;
+    border:none;
+}
+
+.equal {
+    display: flex;
+    display: -webkit-flex;
+    flex-wrap: wrap;
+}
+
+.container-fluid {
+    height:100%;
+}
+
+.fill{
+    width:100%;
+    height:100%;
+    min-height:100%;
+    padding-top:40px;
+    box-sizing:border-box;
+}
+
+
+.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+    background-color: rgba(25, 41, 228, 0.53);
+}
+
+.hoverDiv:hover {background: rgba(25, 41, 228, 0.53);}
+
+.tableBackground {
+    /*background-color: #393867;*/
+    /*opacity: 0.95;*/
+    background-color: rgba(45, 45, 91, 0.69);
+    width: 100%;!important;
+    border-color: white;
+}
+
+
+td, .divtd {
+    text-align: center;
+    color: white;
+    opacity: 0.98;
+    font-weight: bold;
+    font-size: large;
+    border: thin solid;
+}
+
+.tdRowName {
+    border: thin solid;!important;
+    border-color: white;!important;
+    text-align: left;
+    background-color: rgba(19, 29, 59, 0.85);
+    padding-left: 10px;!important;
+    padding-top: 3px;!important;
+}
+
+.infoTable {
+    border: thin solid;
+    min-width: 220px;
+    border-color: white;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    font-size: medium;
+    background-color: rgba(19, 29, 59, 0.85);
+}
+
+.effGradient {
+    color: #ff611b;
+    text-shadow: 0 0 0 rgb(38, 48, 115),
+    1px 1px 0 rgb(38, 48, 1159),
+    2px 2px 0 rgb(38, 48, 115),
+    3px 3px 0 rgb(38, 48, 115),
+    4px 4px 0 rgb(38, 48, 115),
+    5px 5px 0 rgb(38, 48, 115),
+    6px 6px 0 rgb(38, 48, 115),
+    7px 7px 0 rgb(38, 48, 115),
+    8px 8px 7px rgba(0, 0, 0, 0.75),
+    8px 8px 1px rgba(0, 0, 0, 0.5),
+    0 0 7px rgba(0, 0, 0, .2);
+}
+
+a ,ul.nav, li.active  {
+color: white; !important;
+}
+
+a:visited, ul.nav li a, ul.nav li a:visited {
+    color: white; !important;
+}
+
+.link-unstyled, .link-unstyled:link {
+    color: white;
+    text-decoration: inherit;
+}
+
+
+a:hover, ul.nav li a:hover, ul.nav li a:active {
+    color: yellow; !important;
+}
+
+select, button {
+    background: Transparent no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: white;
+    text-decoration: underline;
+}
+
+option {
+    color: blue;
+    text-decoration: underline;
+}
+

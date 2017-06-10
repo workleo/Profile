@@ -1,0 +1,306 @@
+<head>
+    <title>PROFILE</title>
+
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% stylesheets
+    '@AppBundle/Resources/public/bootstrap/css/bootstrap.min.css'
+    '@AppBundle/Resources/public/css/*'
+    filter='cssrewrite' output='css/compiled/app.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+
+
+    {% block stylesheets %}
+        <link rel="stylesheet" href="{{ asset('/bundles/app/font/font-awesome/css/awesome-bootstrap-checkbox.css') }}"/>
+        <link rel="stylesheet" href="{{ asset('/bundles/app/font/font-awesome/css/font-awesome.css') }}"/>
+    {% endblock %}
+
+
+    {% javascripts
+    '@AppBundle/Resources/public/js/profilePage.js'
+    '@AppBundle/Resources/public/js/scriptjava_ajax.js'
+    '@AppBundle/Resources/public/js/jquery.min.js'
+    '@AppBundle/Resources/public/js/eyes.js'
+    '@AppBundle/Resources/public/bootstrap/js/bootstrap.min.js'
+
+    output='js/compiled/app.js' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
+
+
+</head>
+<body class="bgWithImage" style="background: url({{ person.backImageSrc }}) no-repeat fixed;background-size: cover;">
+
+<div class="container-fluid ">
+    <div class="row">
+        <div class="col-md-3 "><h3> &nbsp; </h3></div>
+        <div class="col-md-9 effGradient" style="text-align:match-parent; padding-left: 9%">
+            <h3>{{ person.dedication }} </h3>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-8 effGradient">
+            <h4>
+                <small style="color: white;!important;">{{ person.descriptEn }}
+                </small>
+            </h4>
+        </div>
+        <div class="col-md-4 effGradient">
+            <h4>
+                <small>
+                    <a href="https://en.wikipedia.org/wiki/Eric_Cartman" target="_blank" class="link-unstyled">
+                        {{ person.descriptRu }}&nbsp;<i class="fa fa-mouse-pointer fa-1x "></i>
+                    </a></small>
+            </h4>
+        </div>
+    </div>
+
+    <div class="row equal">
+        <div class="col-md-3 infoTable hoverDiv"><i class="fa fa-id-card" aria-hidden="true"></i>
+
+            Powers/Skills<br>
+            <span style="display:inline-block ; border: dashed;">
+                            <video id="cartmanVideo" width="180" height="146" controls
+                                   poster="{{ person.personImage }}">
+                               <source id="cartmanVideoSrc" src="{{ person.personVideo }}" type="video/webm">
+                            </video></span><br>
+
+            {% for skill in person.skillVideoArray %}
+                <button type="button" onclick="OpenInMyFrame('{{ skill.video }}','{{ person.personVideo }}')">
+                    <i class="fa fa-video-camera" aria-hidden="true"></i>&nbsp;
+                    {{ skill.name }}
+                </button>
+                <div class="w3-light-grey w3-round-xlarge w3-small">
+                    <div
+                            class="w3-container w3-center w3-round-xlarge{% if loop.index is divisible by(2) %} w3-gray {% else %} w3-red {% endif %}"
+                            style="width:{{ skill.proc }}">{{ skill.proc }}</div>
+                </div>
+            {% endfor %}
+
+            <div><u> <i class="fa fa-video-camera" aria-hidden="true"></i>&nbsp;
+                    {{ person.selectVideoTitle }}</u></div>
+            <div class="dropdown">
+                <button id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ person.selectVideoName }}
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dLabel"
+                    style="background-color: #393867; text-align: center;">
+                    {% for select in person.selectVideoArray %}
+                        <li id="{{ loop.index }}">
+                            <button type="button"
+                                    onclick="OpenInMyFrame('{{ select.video }}','{{ person.personVideo }}')">
+                                {{ select.name }}
+                            </button>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <div class="w3-light-grey w3-round-xlarge w3-small">
+                <div class="w3-container w3-center w3-round-xlarge w3-red"
+                     style="width:99%">{{ person.selectVideoProc }}</div>
+            </div>
+
+        </div>
+        <div class="col-md-6" style="padding-left: 2px;!important;padding-right: 2px;!important;">
+            <table class="table-hover   tableBackground ">
+                <tr>
+                    <td width="25%" class="tdRowName"><i class="fa fa-user-circle-o fa-2x"></i>&nbsp;Name
+                    </td>
+                    <td>{{ person.personName }}</td>
+                </tr>
+                <tr>
+                    <td class="tdRowName"><i class="fa fa-user-circle fa-2x"></i>&nbsp;Surname</td>
+                    <td>{{ person.personSurname }}</td>
+                </tr>
+                <tr>
+                    <td class="tdRowName"><i class="fa fa-briefcase fa-2x"></i>&nbsp;Occupation
+                    </td>
+                    <td>{{ person.personOccupation }}</td>
+                </tr>
+                <tr>
+                    <td class="tdRowName"><i class="fa fa-transgender fa-2x"></i>Gender</td>
+                    <td>{{ person.personGender }}&nbsp;<i class="fa fa-male fa-1x"></i></td>
+                </tr>
+                <tr>
+                    <td class="tdRowName"><i class="fa fa-star-half-o fa-2x"></i>Alias</td>
+                    <td>
+                        {% for alias in person.personAliasArray %}
+                            {{ alias }} {% if loop.index != loop.last %} ,{% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdRowName"><i class="fa fa-thumbs-o-up fa-2x"></i>Catchphrases</td>
+                    <td>
+                        <ul>
+                            {% for phrase in person.personCatchphrases %}
+                                <li>
+                                    <audio id="{{ phrase.id }}">
+                                        <source src="{{ phrase.wav }}"
+                                                type="audio/ogg"/>
+                                    </audio>
+                                    <button type="button"
+                                            onclick="document.getElementById('{{ phrase.id }}').play()">{{ phrase.phrase }}
+                                        <i class="fa fa-volume-up" aria-hidden="true"></i>
+                                    </button>
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdRowName"><i class="fa fa-map fa-2x"></i>Residence</td>
+                    <td>
+                        <a href="{{ person.personResidence.url }}"
+                           target="_blank" class="link-unstyled">{{ person.personResidence.name }}</a>
+                        &nbsp;<i class="fa fa-mouse-pointer fa-1x "></i>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdRowName"><i class="fa fa-phone fa-2x"></i>&nbsp;Phone</td>
+                    <td><h4>{{ person.personPhone }}</h4></td>
+                </tr>
+                <tr>
+                    <td class="tdRowName"><i class="fa fa-envelope fa-2x "></i>&nbsp;E-mail
+                    </td>
+                    <td>
+
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#mailModalForm">
+                            <i class="fa fa-refresh fa-spin fa-2x"></i> Launch My contact Form
+                        </button>
+
+                </tr>
+            </table>
+
+        </div>
+        <div class="col-md-3">
+
+
+        </div>
+    </div>
+    <div class=" container-fluid row">
+        <div class="col-md-12 fill"></div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="mailModalForm" tabindex="-1" role="dialog" aria-labelledby="mailModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content tableBackground " style="color: white;">
+            <div class="modal-header tdRowName " style="padding: 2px">
+                <h6>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"
+                            title="Close me!" style="color: white">
+                        <span aria-hidden="true">&times;</span>close
+                    </button>
+                </h6>
+                <h3 class="modal-title" id="mailModalLabel" style="text-align: center">&nbsp;&nbsp;Send me a
+                    message</h3>
+
+            </div>
+            <div class="modal-body ">
+
+                <div class="row" style="color: #0e0e4d;">
+                    <div class="col-sm-12">
+                        <div class="well " style="margin: 3px;background: rgb(168,215,255);">
+                            <form role="form" id="form4Mail" name="form4Mail" data-toggle="validator" method="post"
+                                  class="shake ">
+                                <div class="row" style="padding: 5px;">
+                                    <div class="form-group col-sm-6">
+                                        <label for="name" class="h4">Name</label>
+                                        <input type="text" class="form-control" id="name"
+                                               placeholder="Enter name" required
+                                               data-error="You must enter your name">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                    <div class="form-group col-sm-6">
+                                        <label for="email" class="h4">Email</label>
+                                        <input type="email" class="form-control" id="email"
+                                               placeholder="Enter email" required
+                                               data-error="You must enter the email address">
+                                        <div class="help-block with-errors"></div>
+                                    </div>
+                                </div>
+
+
+                                <div class="form-group">
+                                    <div class="row" style="padding: 5px;">
+                                        <div class="col-sm-6 h4">Message</div>
+                                    </div>
+                                    <div class="btn-group col-sm-6 " data-toggle="buttons">
+                                        <label class="btn btn-default" title="{{ person.personMessageTips.like }}"
+                                               id="lRbLike">
+                                            <input type="radio" id="rbLike" name="rbMail" value="1"
+                                                   onchange="onClickTip('rbLike')"/>
+                                            <i class="fa fa-thumbs-up" aria-hidden="true"
+                                               style="color: rgba(19, 29, 59, 0.85);"></i>
+                                        </label>
+                                        <label class="btn btn-default" title="{{ person.personMessageTips.neutral }}"
+                                               id="lRbNone">
+                                            <input type="radio" id="rbNone" name="rbMail" value="0"
+                                                   onchange="onClickTip('rbNone')"/>
+                                            <i class="fa fa-bath" aria-hidden="true"
+                                               style="color: rgba(25, 41, 228, 0.53);"></i>
+                                        </label>
+                                        <label class="btn btn-default" title="{{ person.personMessageTips.hate }}"
+                                               id="lRbHate">
+                                            <input type="radio" id="rbHate" name="rbMail" value="2"
+                                                   onchange="onClickTip('rbHate')"/>
+                                            <i class="fa fa-thumbs-down" aria-hidden="true" style="color: #F44336;"></i>
+                                        </label>
+                                    </div>
+
+                                    <div class="btn-group col-sm-6 pull-right">
+                                        {% for comment in person.personMailComment %}
+                                            <span class="checkbox" style="display: inline-flex;"
+                                                  id="spComment{{ loop.index }}">
+                                                 <!--suppress HtmlFormInputWithoutLabel -->
+                                                <input type="checkbox" class="styled" id="cbxComment{{ loop.index }}"
+                                                       onclick="onCLickComment('cbxComment{{ loop.index }}','lbComment{{ loop.index }}',
+                                                               'spComment{{ loop.index }}','{{ comment.mess }}','{{ comment.class }}')"/>
+                                                <label for="lbCbxComment{{ loop.index }}" id="lbComment{{ loop.index }}"
+                                                       style="padding: 1px;">&nbsp;
+                                                </label>
+                                           </span>
+                                        {% endfor %}
+                                    </div>
+
+
+                                    <textarea id="message" class="form-control" rows="8"
+                                              placeholder="Enter your message"
+                                              required data-error="Please fill out this field"></textarea>
+                                    <div class="help-block with-errors"></div>
+
+                                    <div id="msgSubmit" class=" col-sm-8 h4 text-center hidden"></div>
+                                    <input type="reset" class="btn btn-reset pull-right" value="Reset" id="resetBtn">
+
+                                    <button type="submit" id="form-submit"
+                                            class="btn btn-success pull-right " style=" background-color:#F44336">
+                                        Submit
+                                    </button>
+
+                                    <div class="clearfix"></div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+{% javascripts
+'@AppBundle/Resources/public/js/validator.min.js'
+'@AppBundle/Resources/public/js/mailForm.js'
+output='js/compiled/app2.js' %}
+<script type="text/javascript" src="{{ asset_url }}"></script>
+{% endjavascripts %}
+
+</body>

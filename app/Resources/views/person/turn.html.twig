@@ -1,0 +1,14 @@
+<head>
+    {% stylesheets
+    '@AppBundle/Resources/public/css/shadow.css'
+    filter='cssrewrite' output='css/compiled/app.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+</head>
+
+<body style="background-color: black">
+{{ form_start(form) }}
+<img style="max-width: 240px" src="{{ picture }}"/><br>
+<div class="shadow font" style="word-wrap: break-word; max-width: 240px">{{ answer }}</div>
+{{ form_end(form) }}
+</body>

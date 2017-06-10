@@ -1,0 +1,11 @@
+.shadow{
+    background: #9d9c94;
+    box-shadow: 0 0 4px 4px white inset;
+    text-align: center;
+    margin-top: 1px;
+    margin-bottom: 1px;
+}
+
+.bigfont{
+    font-size: large;
+}

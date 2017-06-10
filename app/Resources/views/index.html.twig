@@ -1,0 +1,19 @@
+<head>
+    {% stylesheets
+    '@AppBundle/Resources/public/css/shadow.css'
+    filter='cssrewrite' output='css/compiled/app.css' %}
+    <link rel="stylesheet" href="{{ asset_url }}"/>
+    {% endstylesheets %}
+</head>
+
+<body style="background-color: black">
+{{ form_start(form) }}
+<img src="data:image/png;base64,{{ captcha }}" />
+<div class="shadow bigfont" align="left" style="max-width: 300px; left: 0;">{{ person }}</div>
+<label>
+    <input class="shadow bigfont" type="text" name="captch" style="width: 300px"/>
+</label>
+<br>
+<input class="shadow bigfont" type="submit" name="send" value="Check" style="width: 100px;margin-left: 100px;"/>
+{{ form_end(form) }}
+</body>

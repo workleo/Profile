@@ -2,7 +2,8 @@
 
 namespace AppBundle\Component;
 
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class TurningClass
 {
@@ -13,12 +14,10 @@ class TurningClass
     private $answer;
 
 
-    public function __construct(Session $session)
+    public function __construct( SessionInterface $session, Request $request)
     {
 
-        $this->postCaptha = null;
-        if (isset($_POST['captch'])) $this->postCaptha = $_POST['captch'];
-
+        $this->postCaptha =$request->get('captch');
         $this->sessionPage = null;
         if ($session->has('page')) {
             $this->sessionPage = $session->get('page');
@@ -39,7 +38,7 @@ class TurningClass
         } else {
             $this->answer = 'I\'ll be back!';
             $this->imgSrc = '/image/mbeback.jpg';
-            $this->url = '/index';//'/index';
+            $this->url = '/index';
         }
     }
 

@@ -5,6 +5,17 @@ namespace AppBundle\Entity;
 
 class ProfileEntity
 {
+    private $id;
+
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
     private $dedication;
     private $backImageSrc;
     private $descriptEn;
@@ -21,7 +32,7 @@ class ProfileEntity
     private $personOccupation;
     private $personGender;
     private $personAliasArray;
-    private $personCatchphrases;
+    private $personCatchPhrases;
     private $personResidence;
     private $personPhone;
     private $personMessageTips;
@@ -37,56 +48,6 @@ class ProfileEntity
     public function setBackImageSrc(string $backImageSrc)
     {
         $this->backImageSrc = $backImageSrc;
-    }
-
-
-    public function __construct()
-    {
-        $this->dedication = 'It\'s dedicated to fans of The South Park';
-        $this->backImageSrc = '/image/back_flag.jpeg';
-        $this->descriptEn = 'All characters and events in this show—even those based on' .
-            'real people—are entirely fictional. All celebrity voices are impersonated... poorly.' .
-            'The following program contains coarse language and due to its content it should not be viewed by anyone';
-        $this->descriptRu = '...Этот фильм содержит нецензурную лексику и сцены насилия, поэтому его не следует' .
-            'смотреть…НИКОМУ';
-        $this->personImage = '/image/cartman.jpg';
-        $this->personVideo = '/video/01_Hate_hd.webm';
-        $this->skillVideoArray = array(
-            array('video' => '/video/02_Manipulation_hd.webm', 'name' => 'Manipulation', 'proc' => '70%'),
-            array('video' => '/video/03_Strategic.webm', 'name' => 'Strategic skills', 'proc' => '51%'),
-            array('video' => '/video/04_Charisma.webm', 'name' => 'Charisma', 'proc' => '75%'),
-            array('video' => '/video/05_Sumo.webm', 'name' => 'Sumo wrestling skills', 'proc' => '30%'));
-        $this->selectVideoTitle = 'A Level of bulling abilities';
-        $this->selectVideoName = 'Select one bulling';
-        $this->selectVideoArray = array(
-            array('name' => '1.Kyle\'s mom lyrics', 'video' => '/video/06_KyleMom_hd.webm'),
-            array('name' => '2.Мама Кайла (ненормативная лексика)', 'video' => '/video/07_KyleMom_hd.webm'));
-        $this->selectVideoProc = '99%';
-
-        $this->personName = 'Eric Theodore';
-        $this->personSurname = 'Cartman';
-        $this->personOccupation = 'An elementary school student';
-        $this->personGender = 'An american boy';
-        $this->personAliasArray = array('Fatass', 'A.W.E.S.O.M.-O 4000', 'Fatty Doo-Doo', 'Asshole');
-
-        $this->personCatchphrases = array(
-            array('wav' => '/audio/cartman-going-home.wav', 'phrase' => 'Screw you guys! I\'ma-going home!', 'id' => 'wav00'),
-            array('wav' => '/audio/Respct.wav', 'phrase' => 'Respect my authoritah!', 'id' => 'wav01'),
-            array('wav' => '/audio/notfat.wav', 'phrase' => 'I\'m not fat, I\'m big boned!', 'id' => 'wav02')
-        );
-
-        $this->personResidence = array('name' => 'South Park, Colorado,USA',
-            'url' => 'https://www.google.com/maps/d/viewer?mid=1JNq88ZiK_Mji54heayOOr0iUaIo&hl=en_US&ll=39.21355254056336%2C-105.98078698419192&z=14');
-
-        $this->personPhone = '(412) 831-7000';
-        $this->personMessageTips = array('like' => 'I love You Eric!', 'neutral' => 'Clear', 'hate' => 'I hate You Cartman!');
-        $this->personMailFormUrl = '/person/mailForm';
-
-        $this->personMailComment = array(
-            array('mess' => 'I', 'class' => 'checkbox-danger'),
-            array('mess' => 'Love', 'class' => 'checkbox-warning'),
-            array('mess' => 'You', 'class' => 'checkbox-success'),
-            array('mess' => 'too', 'class' => 'checkbox-primary'));
     }
 
 
@@ -149,15 +110,15 @@ class ProfileEntity
     }
 
 
-    public function getPersonCatchphrases(): array
+    public function getPersonCatchPhrases(): array
     {
-        return $this->personCatchphrases;
+        return $this->personCatchPhrases;
     }
 
 
-    public function setPersonCatchphrases(array $personCatchphrases)
+    public function setPersonCatchPhrases(array $personCatchPhrases)
     {
-        $this->personCatchphrases = $personCatchphrases;
+        $this->personCatchPhrases = $personCatchPhrases;
     }
 
 

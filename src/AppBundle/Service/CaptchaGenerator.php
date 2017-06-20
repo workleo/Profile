@@ -1,19 +1,20 @@
 <?php
 
-namespace AppBundle\Component;
+namespace AppBundle\Service;
 
 use Minho\Captcha\CaptchaBuilder;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
-class CaptchaPreparator
+class CaptchaGenerator
 {
-    static public function prepare_captcha($_width, $_height, Session $session)
+
+    function prepare_captcha(int $width, int $height, SessionInterface $session)
     {
         if ($session !== null) {
             $captch = new CaptchaBuilder();
             $captch->initialize([
-                'width' => $_width,
-                'height' => $_height,
+                'width' => $width,
+                'height' => $height,
                 'line' => true,
                 'curve' => true,
                 'noise' => 8,

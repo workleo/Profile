@@ -5,11 +5,11 @@ namespace AppBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use AppBundle\Entity\ProfileEntity;
+//use AppBundle\Entity\ProfileEntity;
+use AppBundle\Repository\ProfileControllerTest;
 
 class ProfileController extends Controller
 {
-
 
     /**
      * @Route("/person/profile", name="profile")
@@ -19,10 +19,11 @@ class ProfileController extends Controller
     public function turningAction(Request $request)
     {
         $request->server->get('SCRIPT_NAME');
-        $profile = new ProfileEntity();
+       // $profile = new ProfileEntity();
+        $profileRepo=new ProfileControllerTest();
 
         return $this->render('/person/profile.html.twig', array(
-            'person'=>$profile,
+            'person'=>$profileRepo->find(0),
         ));
     }
 }

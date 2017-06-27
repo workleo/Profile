@@ -4,11 +4,11 @@ namespace AppBundle\Repository;
 
 use AppBundle\Entity\ProfileEntity;
 
-class ProfileControllerTest extends ProfileController
+class ProfileRepositoryTest extends ProfileRepository
 {
 
     /**
-     * ProfileControllerTest constructor.
+     * ProfileRepositoryTest constructor.
      */
     public function __construct()
     {

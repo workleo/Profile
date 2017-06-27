@@ -3,7 +3,7 @@ namespace  AppBundle\Repository;
 
 use AppBundle\Entity\ProfileEntity;
 
-class ProfileController
+class ProfileRepository
 {
 
     private $profiles;

@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 //use AppBundle\Entity\ProfileEntity;
-use AppBundle\Repository\ProfileControllerTest;
+use AppBundle\Repository\ProfileRepositoryTest;
 
 class ProfileController extends Controller
 {
@@ -20,7 +20,7 @@ class ProfileController extends Controller
     {
         $request->server->get('SCRIPT_NAME');
        // $profile = new ProfileEntity();
-        $profileRepo=new ProfileControllerTest();
+        $profileRepo=new ProfileRepositoryTest();
 
         return $this->render('/person/profile.html.twig', array(
             'person'=>$profileRepo->find(0),

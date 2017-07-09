@@ -19,8 +19,7 @@ class ProfileController extends Controller
     public function turningAction(Request $request)
     {
         $request->server->get('SCRIPT_NAME');
-       // $profile = new ProfileEntity();
-        $profileRepo=new ProfileRepositoryTest();
+        $profileRepo=new ProfileRepositoryTest();// $profile = new ProfileEntity();
 
         return $this->render('/person/profile.html.twig', array(
             'person'=>$profileRepo->find(0),
